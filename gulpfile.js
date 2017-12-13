@@ -192,6 +192,30 @@ gulp.task('js', function () {
     .pipe(browserSync.reload({stream: true}))
 })
 
+////////////////////////////////////////////////////////////////////////////////
+// DEPLOY on local dev env
+////////////////////////////////////////////////////////////////////////////////
+
+gulp.task('deploy', function() {
+
+  var files = [
+    '_dist/**/*', 
+    'page-templates/**/*',
+    'src/**/*',
+    'screenshot.png',
+    '*.php',
+    '*.css'];
+
+  var destPath = '/Applications/MAMP/htdocs/ssj/wp-content/themes/austeve-heisenberg';
+
+  return gulp.src(files, {base:"."})
+        .pipe(gulp.dest(destPath))
+        .pipe(notify({
+        message: "✔︎ Deploy task complete",
+        onLast: true
+      }));
+});
+
 // Watch our files and fire off a task when something changes
 gulp.task('watch', ['build'], function () {
   gulp.watch(paths.sassPath + '**/*.scss', ['css'])

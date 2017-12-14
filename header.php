@@ -25,7 +25,50 @@
 $svg_sprite = file_get_contents( get_template_directory() . '/_dist/sprite/sprite.svg' );
 if ( file_exists( $svg_sprite ) ) {
 	echo $svg_sprite;
-} ?>
+} 
+
+$fixedBackground = get_theme_mod('austeve_background_fixed', 'fixed');
+$backgrounds = get_theme_mod('austeve_backgrounds', 0);
+$onlyforhome = get_theme_mod('austeve_background_homeonly', false);
+$pageClasses = is_home() ? "homepage" : "";
+
+if ($fixedBackground == 'fixed') 
+{
+	//Fixed
+?>
+	<div id="background-div" class="fixed">
+<?php
+		for ($b = 0; $b < $backgrounds; $b++) {
+			if (!$onlyforhome || is_home())
+			{
+				echo '<div id="bgImage'.($b+1).'" class="bgImage">&nbsp;</div>';
+			}
+		}
+?>
+	</div>
+	
+	<div id="page" class="<?php echo $pageClasses; ?>">
+
+<?php 
+}
+else
+{
+	//Scrolling
+?>
+	<div id="background-div" class="scrolling">
+<?php
+		for ($b = 0; $b < $backgrounds; $b++) {
+			if (!$onlyforhome || is_home())
+			{
+				echo '<div id="bgImage'.($b+1).'" class="bgImage">&nbsp;</div>';
+			}	
+		}
+?>
+
+		<div id="page" class="<?php echo $pageClasses; ?>">
+<?php
+}
+?>
 
 <header id="masthead">
 	<section class="row column">

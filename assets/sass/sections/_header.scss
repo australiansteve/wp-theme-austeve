@@ -9,3 +9,52 @@
 .site-description {
 	margin-bottom: 1.25rem;
 }
+
+/* Scrolling vs Fixed background stuff */
+
+#background-div.fixed {
+    z-index: -10;
+    min-width: 100%;
+    min-height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+}
+
+.fixed .bgImage {
+    background-position: 50% 100%;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: -10;
+}
+
+#background-div.scrolling {
+    z-index: -10;
+    min-width: 100%;
+    min-height: 100%;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+}
+
+.scrolling .bgImage {
+    background-position: 50% 0%;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-repeat: no-repeat;
+    background-size: contain;
+    z-index: -10;
+}
+
+.scrolling #bgImage1 {
+    background-repeat: repeat-y;
+}

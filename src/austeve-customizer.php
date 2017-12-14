@@ -129,7 +129,7 @@ class AUSteve_Heisenberg_Customizer {
 		        'austeve_menu_layout',
 		        array(
 					'label' 	=> __( 'Layout', 'heisenberg' ),
-					'section' 	=> 'austeve_menu_section',
+					'section' 	=> 'austeve_layout_section',
 					'settings' 	=> 'austeve_menu_layout',
 					'help_text'  => 'Select menu layout...',
 					'choices' 	=> array(
@@ -151,6 +151,12 @@ class AUSteve_Heisenberg_Customizer {
 			'title'       => __( 'Background', 'heisenberg' ),
 			'priority'    => 30,
 			'description' => 'Upload a background image',
+		) );
+
+		$wp_customize->add_section( 'austeve_layout_section' , array(
+		    'title'       => __( 'Layout', 'dessertstorm' ),
+		    'priority'    => 30,
+		    'description' => 'Choose desired layout',
 		) );
 
 	}
@@ -176,21 +182,6 @@ class AUSteve_Heisenberg_Customizer {
 					echo "opacity: ".get_theme_mod('austeve_background_opacity_'.($b+1), '1.0').";";
 	            	echo "}";
 				}
-	            
-				$sections = get_theme_mod('austeve_general_sections', 0);
-
-				for ($s = 0; $s < $sections; $s++) {
-
-	            	echo ".section-".$s." .content-background-div { ";
-	            	echo "    background-color: ".get_theme_mod('austeve_content_'.$s.'_bgColour', '').";";
-	            	echo "    opacity: ".get_theme_mod('austeve_content_'.$s.'_bgOpacity', '1.0').";";
-	            	echo "    transform: translate3d(0, 0, 0);"; /* Required for the background to display in the right plane on Safari */
-	            	echo "}";
-
-	            	echo ".section-".$s." .content-background-image { ";
-	            	echo "    background-image: url(".get_theme_mod('austeve_content_'.$s.'_bgImage', '').");";
-	            	echo "}";
-	        	}
 
 				//Individual page backgrounds using featured image
 				if (is_page() && get_theme_mod('austeve_background_page_featuredimage', false) && has_post_thumbnail())

@@ -141,6 +141,13 @@ gulp.task('js', function () {
     paths.foundationJSpath + 'foundation.util.mediaQuery.js',
 
     // Choose the individual plugins you want in your project
+    paths.foundationJSpath + 'foundation.util.box.js',
+    paths.foundationJSpath + 'foundation.util.keyboard.js',
+    paths.foundationJSpath + 'foundation.util.motion.js',
+    paths.foundationJSpath + 'foundation.util.nest.js',
+    paths.foundationJSpath + 'foundation.util.timerAndImageLoader.js',
+    paths.foundationJSpath + 'foundation.util.touch.js',
+    paths.foundationJSpath + 'foundation.util.triggers.js',
     paths.foundationJSpath + 'foundation.abide.js',
     paths.foundationJSpath + 'foundation.accordion.js',
     paths.foundationJSpath + 'foundation.accordionMenu.js',
@@ -160,13 +167,6 @@ gulp.task('js', function () {
     paths.foundationJSpath + 'foundation.tabs.js',
     paths.foundationJSpath + 'foundation.toggler.js',
     paths.foundationJSpath + 'foundation.tooltip.js',
-    paths.foundationJSpath + 'foundation.util.box.js',
-    paths.foundationJSpath + 'foundation.util.keyboard.js',
-    paths.foundationJSpath + 'foundation.util.motion.js',
-    paths.foundationJSpath + 'foundation.util.nest.js',
-    paths.foundationJSpath + 'foundation.util.timerAndImageLoader.js',
-    paths.foundationJSpath + 'foundation.util.touch.js',
-    paths.foundationJSpath + 'foundation.util.triggers.js',
     paths.foundationJSpath + 'foundation.zf.responsiveAccordionTabs.js',
 
     // Babel polyfill
@@ -227,4 +227,4 @@ gulp.task('watch', ['build'], function () {
 gulp.task('serve', ['browser-sync', 'watch'])
 
 // Full gulp build, mainly used in deployment scripts
-gulp.task('build', ['css', 'js', 'svg-sprite'])
+gulp.task('build', ['css', 'js', 'svg-sprite', 'deploy'])

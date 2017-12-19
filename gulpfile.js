@@ -201,6 +201,7 @@ gulp.task('deploy', function() {
   var files = [
     '_dist/**/*', 
     'page-templates/**/*',
+    'template-parts/**/*',
     'src/**/*',
     'screenshot.png',
     '*.php',

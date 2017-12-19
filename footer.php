@@ -19,10 +19,7 @@
 	<div class="column row">
 
 		<p class="text-center">
-			<svg class="icon">
-				<use xlink:href="#icon-coffee-cup"></use>
-			</svg>
-			Thanks for using Heisenberg!
+			<a href="https://weavercrawford.com">&copy; <?php echo date("Y"); ?> Weaver Crawford Creative</a>
 		</p>
 
 	</div><!-- .column.row -->

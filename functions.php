@@ -16,3 +16,4 @@ require_once __DIR__ . '/src/extras.php';
 require_once __DIR__ . '/src/setup.php';
 require_once __DIR__ . '/src/sidebars.php';
 require_once __DIR__ . '/src/austeve-customizer.php';
+require_once __DIR__ . '/src/austeve-menus.php';

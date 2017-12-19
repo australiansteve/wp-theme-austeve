@@ -79,11 +79,16 @@ else
 		</h1>
 		<h2 class="site-description"><?php echo esc_html( get_bloginfo( 'description' ) ); ?></h2>
 	</section>
-	<?php
-	$args = [
-		'theme_location' => 'primary',
-		'container'      => '',
-	];
-	wp_nav_menu( $args ); ?>
+
+	<ul class="dropdown menu" data-dropdown-menu>
+		<?php
+		$args = [
+			'theme_location' 	=> 'primary',
+			'container'			=> false,
+			'items_wrap' 		=> '%3$s',
+			'walker' 			=> new AUSteve_Foundation_Dropdown_Nav_Menu(),
+		];
+		wp_nav_menu( $args ); ?>
+	</ul>
 </header>
 <div id="content" class="site-content" role="main">

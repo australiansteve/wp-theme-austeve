@@ -142,6 +142,7 @@ gulp.task('js', function () {
 
     // Choose the individual plugins you want in your project
     paths.foundationJSpath + 'foundation.util.box.js',
+    paths.foundationJSpath + 'foundation.util.imageLoader.js',
     paths.foundationJSpath + 'foundation.util.keyboard.js',
     paths.foundationJSpath + 'foundation.util.motion.js',
     paths.foundationJSpath + 'foundation.util.nest.js',

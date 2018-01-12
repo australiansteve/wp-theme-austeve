@@ -8,6 +8,7 @@ namespace Heisenberg;
 define( 'HEISENBERG_VERSION', wp_get_theme()->version );
 define( 'HEISENBERG_DIR', __DIR__ );
 define( 'HEISENBERG_URL', get_template_directory_uri() );
+define( 'USE_CHILD_THEME', TRUE );
 
 require_once __DIR__ . '/src/custom-login.php';
 require_once __DIR__ . '/src/customizer.php';

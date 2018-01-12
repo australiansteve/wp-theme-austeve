@@ -22,11 +22,14 @@ add_action( 'wp_enqueue_scripts', function() {
 		wp_enqueue_script( 'comment-reply' );
 	}
 
-	wp_enqueue_style(
-		'heisenberg_styles',
-		HEISENBERG_URL . '/_dist/css/app.css',
-		[],
-		HEISENBERG_VERSION,
-		''
-	);
+	if (defined( 'USE_CHILD_THEME' ) && !USE_CHILD_THEME )
+	{
+		wp_enqueue_style(
+			'heisenberg_styles',
+			HEISENBERG_URL . '/_dist/css/app.css',
+			[],
+			HEISENBERG_VERSION,
+			''
+		);
+	}
 } );

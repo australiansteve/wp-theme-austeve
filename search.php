@@ -33,13 +33,25 @@ get_header(); ?>
 
 			endwhile;
 
-			the_posts_navigation();
+			$navArgs = array(
+				'prev_text'          => __( 'Next page' ),
+				'next_text'          => __( 'Previous page' ),
+				'screen_reader_text' => __( 'Search results navigation' ),
+			);
+
+			the_posts_navigation($navArgs);
 
 		else :
 
-			printf( 'Sorry, no results for %s',
+			printf( '<h1>Search Results for: %s</h1>',
 				esc_html( get_search_query() )
 			);
+
+			printf( 'Sorry, no results found for \'%s\'. Maybe try again?',
+				esc_html( get_search_query() )
+			);
+
+			get_search_form();
 
 		endif; ?>
 

@@ -26,13 +26,6 @@
 
 </footer><!-- #colophon -->
 
-<?php
-	$fixedBackground = get_theme_mod('austeve_background_fixed', 'fixed');
-	if ($fixedBackground == 'scroll')
-	{
-		echo '</div><!-- #background-div -->';
-	} 
-?>
 <?php wp_footer(); ?>
 </body>
 </html>

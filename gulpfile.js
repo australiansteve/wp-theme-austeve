@@ -21,7 +21,7 @@ const paths = {
   sassPath: 'assets/sass/',
   nodePath: 'node_modules/',
   jsPath: 'assets/js/concat',
-  destPath: '_dist/',
+  destPath: 'assets/_dist/',
   foundationJSpath: 'node_modules/foundation-sites/dist/js/plugins/',
   imgPath: 'assets/img/'
 }
@@ -194,43 +194,30 @@ gulp.task('js', function () {
 })
 
 ////////////////////////////////////////////////////////////////////////////////
-// DEPLOY on local dev env
+// BUNDLE for deployment to external env
 ////////////////////////////////////////////////////////////////////////////////
 
-gulp.task('deploy', function() {
+gulp.task('bundle', function() {
 
   var files = [
-    '_dist/**/*', 
-    'page-templates/**/*',
-    'template-parts/**/*',
-    'src/**/*',
+    'assets/_dist/**/*', 
+    'page-templates/**/*', 
+    'src/**/*', 
+    'template-parts/**/*', 
     'screenshot.png',
     '*.php',
     '*.css'];
 
-  var destPath = '/Applications/MAMP/local.cfsj/wp-content/themes/austeve-heisenberg';
+  var destPath = './_dist/austeve-heisenberg';
 
   return gulp.src(files, {base:"."})
         .pipe(gulp.dest(destPath))
         .pipe(notify({
-        message: "✔︎ Deploy task complete",
+        message: "✔︎ Bundle task complete",
         onLast: true
       }));
 });
 
-////////////////////////////////////////////////////////////////////////////////
-// CLEAN on local dev env
-////////////////////////////////////////////////////////////////////////////////
-
-gulp.task('clean', function() {
-
-  var destPath = '/Applications/MAMP/local.cfsj/wp-content/themes/austeve-heisenberg-child';
-
-  return del([
-      destPath
-      ], {force: true});
-
-});
 
 // Watch our files and fire off a task when something changes
 gulp.task('watch', ['build'], function () {
@@ -243,4 +230,4 @@ gulp.task('watch', ['build'], function () {
 gulp.task('serve', ['browser-sync', 'watch'])
 
 // Full gulp build, mainly used in deployment scripts
-gulp.task('build', ['css', 'js', 'svg-sprite', 'deploy'])
+gulp.task('build', [ 'css', 'login-css', 'js', 'bundle'])

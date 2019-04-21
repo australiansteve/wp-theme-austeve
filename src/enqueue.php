@@ -11,7 +11,7 @@ add_action( 'wp_enqueue_scripts', function() {
 	// Add our main app js file
 	wp_enqueue_script(
 		'heisenberg_appjs',
-		HEISENBERG_URL . "/_dist/js/app{$min_ext}.js",
+		HEISENBERG_URL . "/assets/_dist/js/app{$min_ext}.js",
 		[ 'jquery' ],
 		HEISENBERG_VERSION,
 		true
@@ -26,7 +26,7 @@ add_action( 'wp_enqueue_scripts', function() {
 	{
 		wp_enqueue_style(
 			'heisenberg_styles',
-			HEISENBERG_URL . '/_dist/css/app.css',
+			HEISENBERG_URL . '/assets/_dist/css/app.css',
 			[],
 			HEISENBERG_VERSION,
 			''

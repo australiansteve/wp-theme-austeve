@@ -59,20 +59,20 @@ var svgConfig = {
   }
 }
 
-gulp.task('svg-min', ['clean:svgs'], function () {
+gulp.task('svg-min', gulp.series( 'clean:svgs', function () {
   return gulp.src(paths.imgPath + 'svg/**/*.svg')
     .pipe(svgmin())
     .pipe(gulp.dest(paths.destPath + 'svg'))
-})
+}));
 
-gulp.task('svg-sprite', ['svg-min'], function () {
+gulp.task('svg-sprite', gulp.series( 'svg-min' , function () {
   return gulp.src([
     paths.imgPath + 'svg/*.svg'
   ])
     .pipe(svgSprite(svgConfig))
     .pipe(gulp.dest(paths.destPath))
     .pipe(browserSync.reload({stream: true}))
-})
+}));
 
 ////////////////////////////////////////////////////////////////////////////////
 // Our browser-sync task
@@ -93,7 +93,7 @@ gulp.task('browser-sync', function () {
 ////////////////////////////////////////////////////////////////////////////////
 
 gulp.task('css', function () {
-  gulp.src(paths.sassPath + 'app.scss')
+  return gulp.src(paths.sassPath + 'app.scss')
     .pipe(sourcemaps.init())
     .pipe(sass({outputStyle: 'compressed'})
       .on('error', notify.onError(error => `Error: ${error.message}`))
@@ -110,7 +110,7 @@ gulp.task('css', function () {
 ////////////////////////////////////////////////////////////////////////////////
 
 gulp.task('login-css', function () {
-  gulp.src(paths.sassPath + 'login.scss')
+  return gulp.src(paths.sassPath + 'login.scss')
     .pipe(sourcemaps.init())
     .pipe(sass({outputStyle: 'compressed'})
       .on('error', notify.onError(error => `Error: ${error.message}`))
@@ -219,15 +219,16 @@ gulp.task('bundle', function() {
 });
 
 
+// Full gulp build, mainly used in deployment scripts
+gulp.task('build', gulp.series( 'svg-sprite', 'css', 'login-css', 'js', 'bundle'));
+
 // Watch our files and fire off a task when something changes
-gulp.task('watch', ['build'], function () {
+gulp.task('watch', gulp.series('build', function () {
   gulp.watch(paths.sassPath + '**/*.scss', ['css'])
   gulp.watch(paths.jsPath + '**/*.js', ['js'])
   gulp.watch(paths.imgPath + 'svg/**/*.svg', ['svg-sprite'])
-})
+}));
 
 // Our default gulp task, which starts a server, and watches your files for changes
-gulp.task('serve', ['browser-sync', 'watch'])
+gulp.task('serve', gulp.series('browser-sync', 'watch'));
 
-// Full gulp build, mainly used in deployment scripts
-gulp.task('build', [ 'css', 'login-css', 'js', 'bundle'])
